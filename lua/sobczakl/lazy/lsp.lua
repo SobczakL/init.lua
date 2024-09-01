@@ -29,6 +29,14 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "cssls",
+                "css_variables",
+                "tailwindcss",
+                "cssmodules_ls",
+                "html",
+                "ast_grep",
+                "eslint",
+                "sqls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
