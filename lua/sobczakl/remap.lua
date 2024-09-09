@@ -12,7 +12,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up" })
 
 -- Normal mode mappings
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line without moving cursor" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down and center" })
+vim.keymap.set("n", "<C-D>", "<C-D>zz", { desc = "Half-page down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up and center" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center" })
@@ -25,26 +25,21 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<leader>=", "<C-w>=", { desc = "All windows equal" })
+vim.keymap.set("n", "<S-Up>", "<cmd>resize +5<CR>", { desc = "Increase Window H +5" })
+vim.keymap.set("n", "<S-Down>", "<cmd>resize -5<CR>", { desc = "Decrease Window H -5" })
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +5<CR>", { desc = "Decrease Window V +5" })
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -5<CR>", { desc = "Decrease Window V -5" })
 
 -- NvimTree toggle and focus
 vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Focus NvimTree" })
 
--- Buffer navigation and management
-vim.keymap.set("n", "<leader>b", "", { desc = "Buffers Group" })
-vim.keymap.set("n", "<leader>bl", "<cmd>:ls<CR>", { desc = "List buffers" })
-vim.keymap.set("n", "<tab>", "<cmd>:bn<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-tab>", "<cmd>:bp<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>:bd<CR>", { desc = "Delete buffer" })
-vim.keymap.set("n", "<leader>bx", "<cmd>:bd!<CR>", { desc = "Force delete buffer" })
-vim.keymap.set("n", "<leader>bh", "<cmd>:split<CR>", { desc = "Horizontal split" })
-vim.keymap.set("n", "<leader>bv", "<cmd>:vsplit<CR>", { desc = "Vertical split" })
-
 -- Clipboard operations
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste and keep clipboard content" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete and keep clipboard content" })
+vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "Delete and keep clipboard content" })
 
 -- Miscellaneous
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })

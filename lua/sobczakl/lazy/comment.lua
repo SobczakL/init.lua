@@ -1,28 +1,55 @@
 return {
     'numToStr/Comment.nvim',
+    dependencies = {
+        'JoosepAlviste/nvim-ts-context-commentstring',  -- Add the ts-context-commentstring plugin
+    },
     opts = {
-        -- Add any other options here
-        mappings = {
-            -- Define your custom keymaps here
-            basic = true,  -- Includes `gcc`, `gbc`, etc.
-            extra = true,  -- Includes `gc{motion}`, `gb{motion}`
-            extended = false, -- Includes `gcA`, `gcO`, `gc$`, etc.
+        -- Configuration for Comment.nvim
+        padding = true,   -- Add a space b/w comment and the line
+        sticky = true,    -- Keep the cursor in position
+        ignore = nil,     -- Lines to ignore when commenting
+        toggler = {
+            line = '<leader>//',   -- Line-comment toggle keymap
+            block = '<leader>/b',  -- Block-comment toggle keymap
         },
+        opleader = {
+            line = '<leader>//',   -- Line-comment keymap in NORMAL and VISUAL mode
+            block = '<leader>/b',  -- Block-comment keymap in NORMAL and VISUAL mode
+        },
+        extra = {
+            above = '<leader>/k',  -- Add comment on the line above
+            below = '<leader>/j',  -- Add comment on the line below
+            eol = '<leader>/l',    -- Add comment at the end of line
+        },
+        mappings = {
+            basic = true,  -- Includes basic mappings like `<leader>//` for line and block comments
+            extra = true,  -- Includes extra mappings like `<leader>/k`, `<leader>/j`, `<leader>/l`
+        },
+        -- Pre-hook for JSX/React-specific commenting
+        pre_hook = function(ctx)
+            -- Only apply for filetypes that need JSX/React comment style
+            local U = require('Comment.utils')
+            local location = nil
+            if ctx.ctype == U.ctype.block then
+                location = require('ts_context_commentstring.utils').get_cursor_location()
+            elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+                location = require('ts_context_commentstring.utils').get_visual_start_location()
+            end
+
+            return require('ts_context_commentstring.internal').calculate_commentstring({
+                key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
+                location = location,
+            })
+        end,
     },
     config = function(_, opts)
-        require('Comment').setup(opts)
+        local comments = require('Comment')
+        comments.setup(opts)
 
-        -- Set custom keymaps if needed
+        -- Set custom comment strings for JSX/React files
         local ft = require('Comment.ft')
-        ft.set('lua', { '-- %s', '--[[ %s ]]' })  -- Example: Lua comment strings
-
-        -- Example of custom keymaps
-        vim.keymap.set('n', '<leader>c', '', { desc = 'Comment' })
-        vim.keymap.set('n', '<leader>cl', 'gcc', { noremap = true, silent = true, desc = 'Comment line' })
-        vim.keymap.set('n', '<leader>cb', 'gbc', { noremap = true, silent = true, desc = 'Comment block' })
-        vim.keymap.set('n', '<leader>cn', 'gco', { noremap = true, silent = true, desc = 'Comment line next' })
-        vim.keymap.set('n', '<leader>cp', 'gcO', { noremap = true, silent = true, desc = 'Comment line prev' })
-        vim.keymap.set('v', '<leader>ca', 'gcA', { noremap = true, silent = true, desc = 'Comment line end' })
-        vim.keymap.set('v', '<leader>cb', 'gb', { noremap = true, silent = true, desc = 'Comment selection block' })
+        ft.set('javascriptreact', { '// %s', '{/* %s */}' })
+        ft.set('typescriptreact', { '// %s', '{/* %s */}' })
     end,
 }
+
