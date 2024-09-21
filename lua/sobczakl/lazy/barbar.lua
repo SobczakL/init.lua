@@ -2,7 +2,7 @@ return {
     'romgrk/barbar.nvim',
     version = "^1..",
     dependencies = {
-        'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+        'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
         'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
     init = function()
@@ -36,8 +36,19 @@ return {
         vim.keymap.set("n", "<leader>b5", "<Cmd>BufferGoto 5<CR>", { desc = "Go to buffer 5" })
         vim.keymap.set("n", "<leader>b6", "<Cmd>BufferGoto 6<CR>", { desc = "Go to buffer 6" })
         vim.keymap.set("n", "<leader>b7", "<Cmd>BufferGoto 7<CR>", { desc = "Go to buffer 7" })
-        vim.keymap.set("n", "<leader>b8", "<Cmd>BufferGoto 8<CR>", { desc = "Go to buffer 8" })
-        vim.keymap.set("n", "<leader>b9", "<Cmd>BufferGoto 9<CR>", { desc = "Go to buffer 9" })
         vim.keymap.set("n", "<leader>b0", "<Cmd>BufferLast<CR>", { desc = "Go to last buffer" })
+
+        -- Additional buffer commands
+        vim.keymap.set("n", "<leader>bl", "<Cmd>ls<CR>", { desc = "List all buffers" })
+        vim.keymap.set("n", "<leader>bo", "<Cmd>BufferCloseAllButCurrent<CR>", { desc = "Close all but current buffer" })
+        vim.keymap.set("n", "<leader>br", "<Cmd>BufferCloseAllButPinned<CR>", { desc = "Close all but pinned buffers" })
+        vim.keymap.set("n", "<leader>bs", "<Cmd>BufferSortByDirectory<CR>", { desc = "Sort buffers by directory" })
+        vim.keymap.set("n", "<leader>bS", "<Cmd>BufferSortByExtension<CR>", { desc = "Sort buffers by file extension" })
+        vim.keymap.set("n", "<leader>b>", "<Cmd>BufferMoveNext<CR>", { desc = "Move buffer to the next position" })
+        vim.keymap.set("n", "<leader>b<", "<Cmd>BufferMovePrevious<CR>",
+            { desc = "Move buffer to the previous position" })
+        vim.keymap.set("n", "<leader>be", "<Cmd>enew<CR>", { desc = "Open new empty buffer" })
+        vim.keymap.set("n", "<leader>bb", "<Cmd>BufferFirst<CR>", { desc = "Go to first buffer" })
+        vim.keymap.set("n", "<leader>bB", "<Cmd>BufferLast<CR>", { desc = "Go to last buffer" })
     end,
 }

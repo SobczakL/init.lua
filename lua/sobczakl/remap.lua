@@ -6,6 +6,7 @@ vim.keymap.set("n", ";", ":", { desc = "Command mode" })
 vim.keymap.set("n", "<leader>p", '', { desc = "Project View Group" })
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project View" })
 
+
 -- Visual mode mappings
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up" })
@@ -28,8 +29,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 vim.keymap.set("n", "<leader>=", "<C-w>=", { desc = "All windows equal" })
 vim.keymap.set("n", "<S-Up>", "<cmd>resize +5<CR>", { desc = "Increase Window H +5" })
 vim.keymap.set("n", "<S-Down>", "<cmd>resize -5<CR>", { desc = "Decrease Window H -5" })
-vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +5<CR>", { desc = "Decrease Window V +5" })
-vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -5<CR>", { desc = "Decrease Window V -5" })
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize +5<CR>", { desc = "Decrease Window V +5" })
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize -5<CR>", { desc = "Decrease Window V -5" })
 
 -- NvimTree toggle and focus
 vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
