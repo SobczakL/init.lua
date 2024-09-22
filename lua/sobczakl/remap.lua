@@ -6,7 +6,6 @@ vim.keymap.set("n", ";", ":", { desc = "Command mode" })
 vim.keymap.set("n", "<leader>p", '', { desc = "Project View Group" })
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project View" })
 
-
 -- Visual mode mappings
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up" })
