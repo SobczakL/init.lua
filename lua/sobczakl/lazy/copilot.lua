@@ -4,7 +4,7 @@ return {
         cmd = "Copilot",
         config = function()
             -- Any custom configuration for copilot.vim can go here
-        end
+        end,
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
